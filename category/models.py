@@ -15,6 +15,9 @@ class Category(models.Model):
     description = models.TextField(
         _("description")
     )
+    image = models.URLField(
+        max_length=1000
+    )
     is_active = models.BooleanField(
         _("active"),
         default=True,
