@@ -24,9 +24,8 @@ class UserViewSet(viewsets.ModelViewSet):
             return [permission() for permission in self.permission_classes]
 
     def create(self, request, *args, **kwargs):
-        request.data._mutable = True
-        request.data['is_staff'] = False
-        request.data['is_superuser'] = False
+        request.data.update({'is_staff': False})
+        request.data.update({'is_superuser': False})
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
